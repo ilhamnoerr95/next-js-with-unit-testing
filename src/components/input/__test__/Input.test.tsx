@@ -1,0 +1,33 @@
+import Input from "../index";
+import { render } from "@testing-library/react";
+
+/**
+ * @Getrole textbox itu adalah role untuk input type text, email, password, search, tel, url
+ *
+ */
+describe("Input Component", () => {
+	it("should have a placeholder", () => {
+		const { getByPlaceholderText } = render(
+			<Input
+				placeholder="Enter text"
+				type="text"
+			/>,
+		);
+
+		expect(getByPlaceholderText("Enter text")).toBeInTheDocument();
+	});
+
+	it("should render type password", () => {
+		const { getByLabelText } = render(
+			<Input
+				type="password"
+				label="Password"
+				ariaLabel="password"
+				id="pwd"
+				placeholder="Enter your password"
+			/>,
+		);
+
+		expect(getByLabelText(/password/i)).toHaveAttribute("type", "password");
+	});
+});

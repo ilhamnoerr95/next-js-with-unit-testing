@@ -1,0 +1,77 @@
+import React from "react";
+import InputCustom from "@/components/input";
+import Button from "@/components/button";
+
+const Index = () => {
+	const [login, setLogin] = React.useState<{
+		username: string;
+		password: string;
+	}>({
+		username: "",
+		password: "",
+	});
+
+	const [isLoading, setIsLoading] = React.useState<boolean>(false);
+	const changeLogin = (
+		e: React.ChangeEvent<HTMLInputElement>,
+		type: string,
+	) => {
+		if (type === "username") {
+			setLogin((prev) => ({ ...prev, username: e.target.value }));
+		} else {
+			setLogin((prev) => ({ ...prev, password: e.target.value }));
+		}
+	};
+	const handleLogin = () => {
+		setIsLoading(true);
+		new Promise((resolve) => {
+			setTimeout(() => {
+				resolve(setIsLoading(false));
+			}, 2000);
+		}).then(() => console.log("done data sending", login));
+	};
+
+	return (
+		<div className="flex h-screen bg-amber-100">
+			<div className="m-auto text-3xl font-bold bg-blue-500 p-10 rounded-md">
+				<h3 className="mb-10">Login Page</h3>
+				<InputCustom
+					placeholder="Enter your descriptions"
+					type="text"
+					label="Enter username"
+					id="username"
+					className="mb-5"
+					value={login.username}
+					onChange={(e) =>
+						changeLogin(e as React.ChangeEvent<HTMLInputElement>, "username")
+					}
+				/>
+				<InputCustom
+					placeholder="Enter your descriptions"
+					type="password"
+					label="Your Password"
+					value={login.password}
+					id="pwd"
+					onChange={(e) =>
+						changeLogin(e as React.ChangeEvent<HTMLInputElement>, "pwd")
+					}
+				/>
+				<div className="mt-10 text-sm font-normal text-white">
+					{/* <button className="bg-amber-500 px-5 py-2 rounded-md hover:bg-amber-600">
+						Login
+					</button> */}
+					<Button
+						onClick={handleLogin}
+						isLoading={isLoading}
+						type="submit"
+						label="Login"
+						bgColor="#00B8DB"
+						loadingName="LOADING..."
+					/>
+				</div>
+			</div>
+		</div>
+	);
+};
+
+export default Index;
