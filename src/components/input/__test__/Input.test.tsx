@@ -17,6 +17,17 @@ describe("Input Component", () => {
 		expect(getByPlaceholderText("Enter text")).toBeInTheDocument();
 	});
 
+	it("should render type text", () => {
+		const { getByLabelText } = render(
+			<Input
+				label="Input text"
+				id="text"
+				placeholder="Enter your input text"
+			/>,
+		);
+
+		expect(getByLabelText(/input text/i)).toHaveAttribute("type", "text");
+	});
 	it("should render type password", () => {
 		const { getByLabelText } = render(
 			<Input

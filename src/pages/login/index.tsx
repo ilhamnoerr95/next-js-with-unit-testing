@@ -12,6 +12,7 @@ const Index = () => {
 	});
 
 	const [isLoading, setIsLoading] = React.useState<boolean>(false);
+	const [isError, setIsError] = React.useState<string>("");
 	const changeLogin = (
 		e: React.ChangeEvent<HTMLInputElement>,
 		type: string,
@@ -22,13 +23,36 @@ const Index = () => {
 			setLogin((prev) => ({ ...prev, password: e.target.value }));
 		}
 	};
-	const handleLogin = () => {
+	const handleLogin = async () => {
 		setIsLoading(true);
-		new Promise((resolve) => {
-			setTimeout(() => {
-				resolve(setIsLoading(false));
-			}, 2000);
-		}).then(() => console.log("done data sending", login));
+		setIsError("");
+
+		try {
+			const res = await fetch("/api/login", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					username: login.username,
+					password: login.password,
+				}),
+			});
+
+			if (!res.ok) {
+				throw new Error("Invalid credentials");
+			}
+
+			const data = await res.json();
+			console.log("Logged in, token:", data.token);
+		} catch (err: any) {
+			setIsError(err.message);
+		} finally {
+			setIsLoading(false);
+		}
+		// new Promise((resolve) => {
+		// 	setTimeout(() => {
+		// 		resolve(setIsLoading(false));
+		// 	}, 2000);
+		// }).then(() => console.log("done data sending", login));
 	};
 
 	return (

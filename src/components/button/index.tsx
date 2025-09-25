@@ -25,7 +25,7 @@ const index: React.FC<{
 			onClick={onClick}
 			disabled={disabled || isLoading}
 			style={{
-				backgroundColor: bgColor,
+				backgroundColor: disabled || isLoading ? "#9298A1" : bgColor,
 				padding: "1rem 2rem",
 				borderRadius: "10px",
 				cursor: "pointer",

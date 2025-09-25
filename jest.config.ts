@@ -14,6 +14,7 @@ const customJestConfig: Config = {
 	testEnvironment: "jest-environment-jsdom",
 	// folder atau file yg ditangkap
 	moduleNameMapper: {
+		"^@/(.*)$": "<rootDir>/src/$1",
 		"^@/components/(.*)$": "<rootDir>/components/$1",
 		"^@/hooks/(.*)$": "<rootDir>/hooks/$1",
 		"^@/utils/(.*)$": "<rootDir>/utils/$1",
