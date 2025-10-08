@@ -42,7 +42,7 @@ const Index = () => {
 			}
 
 			const data = await res.json();
-			console.log("Logged in, token:", data.token);
+			return data;
 		} catch (err: any) {
 			setIsError(err.message);
 		} finally {

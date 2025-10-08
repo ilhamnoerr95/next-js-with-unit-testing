@@ -1,4 +1,4 @@
-import LoginPage from "./index";
+import LoginPage from "@/pages/login";
 
 import { render, fireEvent, waitFor } from "@testing-library/react";
 
@@ -33,7 +33,7 @@ describe("Login Page", () => {
 		expect(loginButton).toHaveTextContent(/loading/i);
 
 		// Tunggu API selesai
-		// await waitFor(() => expect(loginButton).not.toBeDisabled());
-		// expect(loginButton).toHaveTextContent(/login/i);
+		await waitFor(() => expect(loginButton).not.toBeDisabled());
+		expect(loginButton).toHaveTextContent(/login/i);
 	});
 });

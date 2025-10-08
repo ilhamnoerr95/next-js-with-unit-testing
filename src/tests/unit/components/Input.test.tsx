@@ -1,4 +1,4 @@
-import Input from "../index";
+import Input from "@/components/input";
 import { render } from "@testing-library/react";
 
 /**

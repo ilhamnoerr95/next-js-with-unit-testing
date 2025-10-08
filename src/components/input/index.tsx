@@ -16,6 +16,7 @@ interface IProps {
 const InputCustom: React.FC<IProps> = (props) => {
 	const {
 		id,
+		// gunanya untuk memberikan nama agar bisa dibaca oleh screen reaader
 		ariaLabel,
 		label,
 		placeholder = "Placeholder ...",

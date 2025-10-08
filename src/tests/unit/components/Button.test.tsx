@@ -1,5 +1,5 @@
 import { render, fireEvent } from "@testing-library/react";
-import Button from "../index";
+import Button from "@/components/button";
 
 // 1 test suites button component that have 4 test cases
 // didalam unit test ini, kita akan mengetes beberapa props yang ada pada button component
@@ -39,7 +39,7 @@ describe("Button components", () => {
 		expect(getByRole("button", { name: "Submit" })).toBeDisabled();
 	});
 
-	it("shows loading state when isLoading prop is true", () => {
+	it("shows loading state when isLoading prop is true n button disabled", () => {
 		const { getByRole } = render(
 			<Button
 				label="Submit"
