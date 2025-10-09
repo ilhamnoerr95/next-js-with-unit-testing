@@ -5,7 +5,7 @@ const createJestConfig = nextJest({ dir: "./" });
 
 const configUnit: Config = {
 	displayName: "unit",
-	testEnvironment: "jsdom",
+	testEnvironment: "jest-environment-jsdom",
 	testMatch: ["<rootDir>/src/tests/unit/**/*.test.[jt]s?(x)"],
 	testPathIgnorePatterns: ["/node_modules/", "/.next/"],
 	coverageThreshold: {

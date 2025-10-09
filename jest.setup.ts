@@ -1,27 +1,7 @@
-import "whatwg-fetch"; // polyfill fetch biar stabil.
+import "@testing-library/jest-dom";
 
-// import { server } from "@/mocks/server";
-
-/**
- * ini file untuk alat yg disiapkan untuk digunakan test
- *
- */
-
-import "@testing-library/jest-dom"; // supaya bisa pakai expect(...).toBeInTheDocument()
-
+// ✅ Node 18 sudah punya TextEncoder, tapi di Jest jsdom perlu inject ulang
 import { TextEncoder, TextDecoder } from "util";
 
-if (!global.TextEncoder) {
-	global.TextEncoder = TextEncoder as any;
-}
-if (!global.TextDecoder) {
-	global.TextDecoder = TextDecoder as any;
-}
-// // Start server before all tests
-// beforeAll(() => server.listen({ onUnhandledRequest: "error" }));
-// //
-// // Reset handlers after each test (biar test tidak saling ganggu)
-// afterEach(() => server.resetHandlers());
-
-// // Close server after all tests
-// afterAll(() => server.close());
+if (!global.TextEncoder) global.TextEncoder = TextEncoder as any;
+if (!global.TextDecoder) global.TextDecoder = TextDecoder as any;

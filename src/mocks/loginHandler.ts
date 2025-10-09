@@ -2,6 +2,8 @@ import { http, HttpResponse } from "msw";
 
 export const handlers = [
 	http.post("/api/login", async ({ request }) => {
+		// Simulasi delay 2 detik
+		await new Promise((resolve) => setTimeout(resolve, 2000));
 		const body = await request.json();
 		const { username, password } = body as {
 			username: string;

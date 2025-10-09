@@ -42,23 +42,24 @@ const Index = () => {
 			}
 
 			const data = await res.json();
+			console.log("data token:", data);
 			return data;
 		} catch (err: any) {
 			setIsError(err.message);
 		} finally {
 			setIsLoading(false);
 		}
-		// new Promise((resolve) => {
-		// 	setTimeout(() => {
-		// 		resolve(setIsLoading(false));
-		// 	}, 2000);
-		// }).then(() => console.log("done data sending", login));
 	};
+	console.log({ isError });
+	// console.log({ pass: login.password, username: login.username, isLoading });
 
 	return (
 		<div className="flex h-screen bg-amber-100">
 			<div className="m-auto text-3xl font-bold bg-blue-500 p-10 rounded-md">
 				<h3 className="mb-10">Login Page</h3>
+				{isError && (
+					<p className="mb-5 text-sm font-normal text-red-500">{isError}</p>
+				)}
 				<InputCustom
 					placeholder="Enter your descriptions"
 					type="text"
@@ -87,6 +88,7 @@ const Index = () => {
 					<Button
 						onClick={handleLogin}
 						isLoading={isLoading}
+						disabled={!login.username || !login.password}
 						type="submit"
 						label="Login"
 						bgColor="#00B8DB"
